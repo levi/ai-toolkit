@@ -11,10 +11,16 @@ class GymSDTrainer(SDTrainer):
         self, process_id: int, job: "ExtensionJob", config: OrderedDict, **kwargs
     ):
         super().__init__(process_id, job, config, **kwargs)
-        # Get the callback function from config if provided
+        # Print full config for debugging
+        print("Full config:")
+        print(self.config)
+
+        # Get and debug the callback function from config
         self.save_callback: Optional[Callable[[str], None]] = self.get_conf(
-            "save_callback", None
+            "save_callback"
         )
+        print("Save callback value:", self.save_callback)
+        print("Save callback type:", type(self.save_callback))
 
     def post_save_hook(self, save_path: str):
         """Called after a model is saved"""
