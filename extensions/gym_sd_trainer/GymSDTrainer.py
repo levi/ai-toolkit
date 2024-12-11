@@ -19,5 +19,8 @@ class GymSDTrainer(SDTrainer):
     def post_save_hook(self, save_path: str):
         """Called after a model is saved"""
         super().post_save_hook(save_path)
+        print(f"Post save hook called for path: {save_path}")
         if self.save_callback:
+            print("Executing save callback")
             self.save_callback(save_path)
+            print("Save callback completed")
