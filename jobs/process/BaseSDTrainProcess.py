@@ -328,6 +328,9 @@ class BaseSDTrainProcess(BaseTrainProcess):
         if self.ema is not None:
             self.ema.train()
 
+        # call post sample hook
+        self.post_sample_hook(step)
+
     def update_training_metadata(self):
         o_dict = OrderedDict({
             "training_info": self.get_training_info()
@@ -449,6 +452,10 @@ class BaseSDTrainProcess(BaseTrainProcess):
         pass
     
     def end_step_hook(self):
+        pass
+
+    def post_sample_hook(self, step=None):
+        # override in subclass
         pass
 
     def save(self, step=None):
