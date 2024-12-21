@@ -19,9 +19,9 @@ class GymSDTrainer(SDTrainer):
         if save_callback:
             save_callback(save_path)
 
-    def post_sample_hook(self, step: Optional[int] = None):
+    def post_sample_hook(self, sample_path: str, step: Optional[int] = None):
         """Called after samples are generated"""
-        super().post_sample_hook(step)
+        super().post_sample_hook(sample_path, step)
         sample_callback = self.get_conf("sample_callback")
         if sample_callback:
-            sample_callback(step)
+            sample_callback(sample_path, step)

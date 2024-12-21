@@ -329,7 +329,7 @@ class BaseSDTrainProcess(BaseTrainProcess):
             self.ema.train()
 
         # call post sample hook
-        self.post_sample_hook(step)
+        self.post_sample_hook(sample_folder, step)
 
     def update_training_metadata(self):
         o_dict = OrderedDict({
@@ -454,7 +454,7 @@ class BaseSDTrainProcess(BaseTrainProcess):
     def end_step_hook(self):
         pass
 
-    def post_sample_hook(self, step=None):
+    def post_sample_hook(self, sample_path: str, step: Optional[int] = None):
         # override in subclass
         pass
 
